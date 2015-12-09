@@ -1,29 +1,24 @@
-function Song(title, artist, duration) {
-  Media.call(this, title, duration);
-  this.artist = artist;
-}
+import csv
 
-Song.prototype = Object.create(Media.prototype);
-
-Song.prototype.toHTML = function() {
-  var htmlString = '<li';
-  if(this.isPlaying) {
-    htmlString += ' class="current"';
-  }
-  htmlString += '>';
-  htmlString += this.title;
-  htmlString += ' - '
-  htmlString += this.artist;
-  htmlString += '<span class="duration">'
-  htmlString += this.duration;
-  htmlString += '</span></li>';
-  return htmlString;
-};
+r_path = "single_line.csv"
+w_path = "final_vs.csv"
 
 
+new_header_elem = ['BIOL_108', 'BIOl 109', 'EXSC 110', 'EXSC 140', 'ACT English', 
+                  'ACT Math', 'ACT Reading', 'ACT Science', 'ACT Comp', 'SAT Verbal', 
+                  'SAT Math', 'SAT Comp']
+                  
+r_csv_file = open(r_path, 'rb')
+w_csv_file = open(w_path, 'wb')
 
+reader = csv.reader(r_csv_file)
+writer = csv.writer(w_csv_file)
 
+#skip header
+reader.next()
 
+for row in reader:
+   print row[0:6]
 
 
 
