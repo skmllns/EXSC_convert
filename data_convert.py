@@ -1,4 +1,5 @@
 import csv
+import re
 
 r_path = "single_line.csv"
 w_path = "final_vs.csv"
@@ -18,7 +19,12 @@ writer = csv.writer(w_csv_file)
 reader.next()
 
 for row in reader:
-   print row[0:6]
+   for idx in range(len(new_header_elem)):
+      writer.writerow([', '.join([str(elem) for elem in row[0:6]]), new_header_elem[idx], row[idx]])
+              
+r_csv_file.close()
+w_csv_file.close()
+  
 
 
 
